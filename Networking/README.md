@@ -1,57 +1,69 @@
-Week 1: Networking Basics and Hands-on Practice
-1. Understanding OSI & TCP/IP Models
-Networking is built on structured models that help in communication between devices. Two major models are:
+# Week 1: Networking Fundamentals
 
-OSI Model (7 Layers)
-The OSI model is a conceptual framework that standardizes network communication into seven layers, each with a unique role:
+## 1. Understanding OSI & TCP/IP Models
 
-Physical Layer – Deals with actual hardware like cables, Wi-Fi signals, and fiber optics.
-Data Link Layer – Ensures reliable data transfer using MAC addresses in Ethernet switches.
-Network Layer – Handles routing and IP addressing, helping devices communicate across networks.
-Transport Layer – Ensures proper data delivery using protocols like TCP (reliable) and UDP (faster but less reliable).
-Session Layer – Manages active connections, such as maintaining a web session between a browser and a server.
-Presentation Layer – Converts data formats and handles encryption (e.g., SSL/TLS for secure connections).
-Application Layer – Provides network services like HTTP (web browsing) and SMTP (email sending).
-TCP/IP Model (4 Layers)
-The TCP/IP model is a simpler version of the OSI model, widely used in real-world networking.
+### OSI Model:
+The OSI (Open Systems Interconnection) model is a conceptual framework that standardizes networking functions into seven layers. Each layer serves a specific role in the communication process.
 
-Network Access Layer – Combines Physical & Data Link layers (e.g., Ethernet, Wi-Fi).
-Internet Layer – Handles IP addressing and routing (e.g., IP protocol).
-Transport Layer – Manages communication reliability (TCP for reliability, UDP for speed).
-Application Layer – Merges OSI’s top three layers, supporting protocols like HTTP, FTP, and SSH.
-2. Common Protocols and Ports in DevOps
-Protocols help devices communicate over networks, and each protocol uses a specific port number:
+#### OSI Layers:
+1. **Physical Layer** - Handles physical connections (e.g., Ethernet cables, Wi-Fi signals).
+2. **Data Link Layer** - Ensures reliable data transfer over the physical medium (e.g., MAC addresses in Ethernet switches).
+3. **Network Layer** - Manages packet routing and forwarding (e.g., IP addressing).
+4. **Transport Layer** - Provides end-to-end communication and error handling (e.g., TCP for reliable data delivery).
+5. **Session Layer** - Maintains active sessions between applications (e.g., web browser and server communication).
+6. **Presentation Layer** - Converts data formats for application use (e.g., encryption with SSL/TLS).
+7. **Application Layer** - Interfaces directly with user applications (e.g., HTTP, SMTP).
 
-Protocol	Port	Purpose
-HTTP	80	Web browsing
-HTTPS	443	Secure web browsing
-FTP	21	File transfers
-SSH	22	Secure remote access
-DNS	53	Resolves domain names to IPs
-SMTP	25	Email sending
-MySQL	3306	Database access
-3. Setting Up an AWS EC2 Instance with Security Groups
-To deploy a virtual server (EC2 instance) on AWS, follow these steps:
+### TCP/IP Model:
+A more simplified framework than OSI, consisting of four layers.
 
-Creating an EC2 Instance
-Log in to your AWS console.
-Open the EC2 Dashboard and click Launch Instance.
-Enter an instance name.
-Choose an AMI (Amazon Machine Image).
-Select or create a key pair for secure access.
-Configure a Security Group with necessary inbound rules (e.g., allowing traffic on ports 80, 443, and 22).
-Click Launch to create the instance.
-Configuring Security Groups
-Open the Security Groups section.
-Modify inbound rules to allow specific traffic (e.g., port 80 for HTTP, port 443 for HTTPS, and port 22 for SSH).
-Modify outbound rules if needed.
-4. Essential Networking Commands for Hands-on Practice
-Below are some useful commands to troubleshoot and test network connectivity:
+#### TCP/IP Layers:
+1. **Network Access Layer** - Equivalent to OSI’s Physical and Data Link layers (e.g., Ethernet, Wi-Fi).
+2. **Internet Layer** - Corresponds to OSI’s Network Layer, responsible for IP addressing and routing.
+3. **Transport Layer** - Handles reliable/unreliable data transmission using TCP or UDP.
+4. **Application Layer** - Merges OSI’s top three layers, supporting application protocols like HTTP, FTP, and DNS.
 
-Command	Purpose	Example Usage
-ping	Checks if a system is reachable.	ping google.com
-traceroute	Shows the path taken by packets.	traceroute google.com (Linux)
-netstat	Displays active connections.	netstat -an
-curl	Sends HTTP requests from the command line.	curl https://api.example.com/data
-dig	Performs DNS lookups.	dig google.com
-nslookup	Queries DNS records.	nslookup google.com
+## 2. Key Network Protocols & Ports
+Understanding key protocols and their respective port numbers is essential for DevOps and system administration.
+
+| Protocol  | Port  | Function  |
+|-----------|------|--------------------------|
+| HTTP      | 80   | Standard web traffic     |
+| HTTPS     | 443  | Secure web communication |
+| FTP       | 21   | File transfer            |
+| SSH       | 22   | Secure remote access     |
+| DNS       | 53   | Domain name resolution   |
+| SMTP      | 25   | Email transmission       |
+| MySQL     | 3306 | Database connection      |
+
+## 3. Setting Up an AWS EC2 Instance & Security Groups
+### Steps to Launch an EC2 Instance:
+1. Log in to the AWS Console.
+2. Navigate to the EC2 Dashboard.
+3. Click on **Launch Instance**.
+4. Enter a name for the instance.
+5. Choose an Amazon Machine Image (AMI).
+6. Select or create a **Key Pair** for authentication.
+7. Create a **Security Group** and allow necessary ports (e.g., 80, 443, 22).
+8. Launch the instance.
+
+### Configuring Security Groups:
+- Select the created **Security Group**.
+- Configure **Inbound Rules** to allow traffic on required ports (e.g., 80 for HTTP, 443 for HTTPS, 22 for SSH).
+- Configure **Outbound Rules** to define outgoing traffic permissions.
+
+## 4. Essential Networking Commands Cheat Sheet
+Practicing these commands will help you troubleshoot and analyze network-related issues.
+
+| Command    | Purpose                                  | Example                        |
+|-----------|----------------------------------|------------------------------|
+| `ping`    | Check connectivity to a host    | `ping google.com`           |
+| `traceroute` | Trace the packet route         | `traceroute google.com` (Linux) |
+| `netstat`  | Display network connections    | `netstat -an`               |
+| `curl`    | Make HTTP requests via CLI      | `curl https://api.example.com/data` |
+| `dig`     | Perform DNS lookups             | `dig google.com`            |
+| `nslookup` | Query DNS records              | `nslookup google.com`       |
+
+---
+This guide provides a solid foundation in networking concepts, security configurations, and essential troubleshooting commands. Keep practicing to enhance your understanding!
+
