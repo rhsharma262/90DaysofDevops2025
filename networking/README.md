@@ -65,5 +65,5 @@ Practicing these commands will help you troubleshoot and analyze network-related
 | `nslookup` | Query DNS records              | `nslookup google.com`       |
 
 ---
-This guide provides a solid foundation in networking concepts, security configurations, and essential troubleshooting commands. Keep practicing to enhance your understanding!
+
 
