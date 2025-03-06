@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This guide covers the basics of Docker, including Docker images, Dockerfiles, Docker Compose, Multi-stage builds, Docker Volumes, and Docker Port Mapping. If you're new to Docker, this is a good starting point!
+This guide covers the basics of Docker, including Docker images, Dockerfiles, Docker Compose, Multi-stage builds, Docker Volumes, and Port Mapping. If you're new to Docker, this is a good starting point!
 
 ---
 
@@ -71,6 +71,37 @@ docker run -p 3000:3000 myapp
 
 ---
 
+## 🔌 Docker Port Mapping
+
+Docker containers run in isolated environments, so they do not expose their ports to the host machine by default. Port mapping allows external access.
+
+### Example:
+```sh
+# Run a container and map port 8080 on host to port 80 in the container
+docker run -p 8080:80 nginx
+```
+
+This means that visiting `http://localhost:8080` will access the web server running inside the container.
+
+---
+
+## 📂 Docker Volumes
+
+Docker **volumes** provide persistent storage for containers, allowing data to survive container restarts.
+
+### Example:
+```sh
+# Create a volume
+docker volume create myvolume
+
+# Run a container with the volume mounted
+docker run -v myvolume:/app/data myapp
+```
+
+Volumes are stored outside the container filesystem, making them useful for databases and persistent data.
+
+---
+
 ## 🏗️ Docker Compose
 
 Docker Compose allows you to manage multi-container applications using a simple YAML file.
@@ -88,6 +119,11 @@ services:
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
 ```
 
 ### Commands:
@@ -129,43 +165,19 @@ CMD ["node", "dist/server.js"]
 
 ---
 
-## 📂 Docker Volumes
+## 🆚 Docker Containers vs Virtual Machines
 
-Docker Volumes allow data to persist across container restarts and enable sharing data between containers.
+Docker Containers and Virtual Machines (VMs) both allow running applications in isolated environments, but they work differently.
 
-### Create and Use a Volume:
-```sh
-# Create a volume
-docker volume create my_volume
+| Feature            | Docker Containers | Virtual Machines |
+|--------------------|------------------|------------------|
+| Startup Time      | Fast (seconds)    | Slow (minutes)   |
+| Resource Usage    | Lightweight      | Heavy            |
+| Isolation        | Process-level     | Full OS-level    |
+| Storage          | Shared kernel     | Separate disk    |
+| Performance      | Near-native       | Slower due to overhead |
 
-# Run a container with a volume
-docker run -v my_volume:/data ubuntu
-```
-
-### List and Remove Volumes:
-```sh
-# List all volumes
-docker volume ls
-
-# Remove a volume
-docker volume rm my_volume
-```
-
----
-
-## 🔌 Docker Port Mapping
-
-Docker allows you to map ports from the container to the host machine, enabling external access to services.
-
-### Example:
-```sh
-# Run a container with port mapping
-docker run -p 8080:80 nginx
-```
-
-### Explanation:
-- `-p 8080:80` maps port `80` inside the container to port `8080` on the host machine.
-- You can now access the Nginx server on `http://localhost:8080`.
+Docker containers are lightweight and share the host OS kernel, whereas VMs include a full OS, making them more resource-intensive.
 
 ---
 
