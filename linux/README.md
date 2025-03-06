@@ -1,112 +1,106 @@
-Linux Administration Basics
-This repository is a beginner-friendly guide to Linux administration. It covers essential topics like file permissions, package management, basic shell scripting, and Linux volumes. Let's get started!
+# Linux Administration Guide
 
-Table of Contents
-File Permissions
+## Table of Contents
+- [File Permissions](#file-permissions)
+- [Package Management](#package-management)
+- [Shell Scripting](#shell-scripting)
+- [Linux LVM Volumes](#linux-lvm-volumes)
 
-Package Management
+---
 
-Basic Shell Scripting
+## File Permissions
+Linux file permissions determine who can read, write, or execute a file.
 
-Linux Volumes
+### Permission Types:
+- `r` (read) - View file contents
+- `w` (write) - Modify file contents
+- `x` (execute) - Run the file as a program
 
-File Permissions
-In Linux, every file and directory has permissions that control who can read, write, or execute them. Permissions are divided into three categories:
+### Changing Permissions:
+Use `chmod` to change permissions.
+```sh
+chmod 755 filename
+```
 
-Owner: The user who owns the file.
+### Changing Ownership:
+Use `chown` to change owner and group.
+```sh
+chown user:group filename
+```
 
-Group: Users who are part of a group.
+---
 
-Others: Everyone else.
+## Package Management
+### Debian-based (Ubuntu, Debian):
+- Update packages:
+  ```sh
+  sudo apt update && sudo apt upgrade
+  ```
+- Install a package:
+  ```sh
+  sudo apt install package_name
+  ```
+- Remove a package:
+  ```sh
+  sudo apt remove package_name
+  ```
 
-Viewing Permissions
-Use the ls -l command to view file permissions:
+### RedHat-based (RHEL, CentOS, Fedora):
+- Update packages:
+  ```sh
+  sudo yum update
+  ```
+- Install a package:
+  ```sh
+  sudo yum install package_name
+  ```
+- Remove a package:
+  ```sh
+  sudo yum remove package_name
+  ```
 
-bash
-Copy
-ls -l filename
-Example output:
+---
 
-Copy
--rw-r--r-- 1 user group 0 Oct 10 12:34 filename
--rw-r--r--: Permissions (read, write, execute for owner, group, and others).
+## Shell Scripting
+A shell script is a file containing a series of commands.
 
-user: Owner of the file.
-
-group: Group associated with the file.
-
-Changing Permissions
-Use the chmod command to change permissions:
-
-bash
-Copy
-chmod 755 filename  # Gives read, write, execute to owner, and read/execute to group/others.
-Package Management
-Linux uses package managers to install, update, and remove software. Common package managers include:
-
-APT (Debian/Ubuntu)
-
-YUM/DNF (CentOS/RHEL/Fedora)
-
-Installing a Package
-bash
-Copy
-sudo apt install package_name  # For Debian/Ubuntu
-sudo yum install package_name  # For CentOS/RHEL
-Updating Packages
-bash
-Copy
-sudo apt update && sudo apt upgrade  # For Debian/Ubuntu
-sudo yum update  # For CentOS/RHEL
-Removing a Package
-bash
-Copy
-sudo apt remove package_name  # For Debian/Ubuntu
-sudo yum remove package_name  # For CentOS/RHEL
-Basic Shell Scripting
-Shell scripting allows you to automate tasks in Linux. A shell script is a text file containing a series of commands.
-
-Example Script
-Create a file called hello.sh:
-
-bash
-Copy
+### Example:
+```sh
 #!/bin/bash
-# This is a comment
+
 echo "Hello, World!"
-Make the Script Executable
-bash
-Copy
-chmod +x hello.sh
-Run the Script
-bash
-Copy
-./hello.sh
-Output:
+```
+Save the file and make it executable:
+```sh
+chmod +x script.sh
+./script.sh
+```
 
-Copy
-Hello, World!
-Linux Volumes
-Linux volumes are used to manage storage. Common tasks include creating, mounting, and resizing partitions.
+---
 
-Listing Disks and Partitions
-Use the lsblk command:
+## Linux LVM Volumes
+Logical Volume Manager (LVM) helps in managing disk storage.
 
-bash
-Copy
-lsblk
-Mounting a Volume
-Create a directory for the mount point:
+### Basic LVM Commands:
+- Create a physical volume:
+  ```sh
+  pvcreate /dev/sdX
+  ```
+- Create a volume group:
+  ```sh
+  vgcreate my_vg /dev/sdX
+  ```
+- Create a logical volume:
+  ```sh
+  lvcreate -L 10G -n my_lv my_vg
+  ```
+- Format and mount:
+  ```sh
+  mkfs.ext4 /dev/my_vg/my_lv
+  mount /dev/my_vg/my_lv /mnt
+  ```
 
-bash
-Copy
-sudo mkdir /mnt/mydisk
-Mount the volume:
+---
 
-bash
-Copy
-sudo mount /dev/sdb1 /mnt/mydisk
-Unmounting a Volume
-bash
-Copy
-sudo umount /mnt/mydisk
+## Conclusion
+This guide covers basic Linux administration topics including file permissions, package management, shell scripting, and LVM volumes.
