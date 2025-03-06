@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This guide covers the basics of Docker, including Docker images, Dockerfiles, Docker Compose, and Multi-stage builds. If you're new to Docker, this is a good starting point!
+This guide covers the basics of Docker, including Docker images, Dockerfiles, Docker Compose, Multi-stage builds, Docker Volumes, and Docker Port Mapping. If you're new to Docker, this is a good starting point!
 
 ---
 
@@ -127,4 +127,48 @@ CMD ["node", "dist/server.js"]
 ✅ No unnecessary dependencies  
 ✅ Better security  
 
+---
 
+## 📂 Docker Volumes
+
+Docker Volumes allow data to persist across container restarts and enable sharing data between containers.
+
+### Create and Use a Volume:
+```sh
+# Create a volume
+docker volume create my_volume
+
+# Run a container with a volume
+docker run -v my_volume:/data ubuntu
+```
+
+### List and Remove Volumes:
+```sh
+# List all volumes
+docker volume ls
+
+# Remove a volume
+docker volume rm my_volume
+```
+
+---
+
+## 🔌 Docker Port Mapping
+
+Docker allows you to map ports from the container to the host machine, enabling external access to services.
+
+### Example:
+```sh
+# Run a container with port mapping
+docker run -p 8080:80 nginx
+```
+
+### Explanation:
+- `-p 8080:80` maps port `80` inside the container to port `8080` on the host machine.
+- You can now access the Nginx server on `http://localhost:8080`.
+
+---
+
+## 🚀 Conclusion
+
+Docker simplifies the deployment of applications by packaging everything needed into containers. Mastering Docker images, Dockerfiles, Compose, Multi-stage builds, Volumes, and Port Mapping will improve your workflow and efficiency. Happy coding! 🎉
